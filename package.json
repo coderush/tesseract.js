@@ -1,0 +1,54 @@
+{
+  "name": "tesseract-js",
+  "description": "Javascript wrapper for tesseract OCR.",
+  "version": "0.0.1",
+  "main": "lib/tesseract.js",
+  "keywords": [
+    "image processing",
+    "text recognition",
+    "tesseract-ocr",
+    "tesseract.js",
+    "tesseract-js",
+    "ocr"
+  ],
+  "tags": [
+    "image processing",
+    "text recognition",
+    "tesseract-ocr",
+    "tesseract.js",
+    "tesseract-js",
+    "ocr"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/suranjan/tesseract.js"
+  },
+  "bugs": {
+    "url": "https://github.com/suranjan/tesseract.js/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/suranjan/tesseract.js/raw/master/LICENSE"
+    }
+  ],
+  "dependencies": {
+    "log4js": "0.5.3"
+  },
+  "devDependencies": {
+
+  },
+  "engines": {
+    "node": ">= 0.8.x"
+  },
+  "homepage": "https://github.com/suranjan/tesseract.js",
+  "author": "Sumit Ranjan (http://www.sumitranjan.com)",
+  "directories": {
+    "lib": "./lib",
+    "deps":"./deps",
+    "src": "./src"
+  },
+  "scripts": {
+    "test": "node test.js"
+  }
+}
