@@ -20,6 +20,7 @@ Version History
 Usage
 -----
 
+```javascript
 var tesseractjs = require('../lib/tesseract')
 var t = new tesseractjs.TesseractBinding();
 console.log("Object created");
@@ -29,7 +30,7 @@ t.processImage();
 console.log(t.getText());
 t.close();
 t.end();
-
+```
 
 Testing
 -------
