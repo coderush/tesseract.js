@@ -23,6 +23,7 @@
  #include <node.h>
  #include <v8.h>
  #include "TesseractBinding.h"
+ #include <allheaders.h>
 
  using namespace v8;
 

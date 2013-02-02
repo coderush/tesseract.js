@@ -4,8 +4,10 @@
       'target_name': 'tesseractjsBindings',
       'dependencies': [
         'deps/tesseract/tesseract.gyp:libtesseract',
+        'deps/leptonica/leptonica.gyp:liblept',
       ],
       'include_dirs': [
+        'deps/leptonica/src',
         'deps/tesseract/api',
         'deps/tesseract/ccmain',
         'deps/tesseract/ccstruct',

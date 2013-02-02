@@ -52,48 +52,79 @@ void TesseractBinding::Initialize(Handle<Object> target) {
 }
 
 TesseractBinding::TesseractBinding() {
-  printf("Constructing object");
+   t_api = new tesseract::TessBaseAPI();
 };
 
 
 TesseractBinding::~TesseractBinding() {
-  printf("Destructing object");
+   t_api->Clear();
+   t_api->End();
 };
 
 Handle<Value> TesseractBinding::New(const Arguments& args) {
-
+	HandleScope scope;
+	TesseractBinding* obj = new TesseractBinding();
+    obj->Wrap(args.This());
+    return args.This();
 }
 
 Handle<Value> TesseractBinding::Init(const Arguments& args) {
-
-
-
+  HandleScope scope;
+  REQUIRE_STRING(arg_lang, 0);
+  char *lang;
+  if (arg_lang.length()) {
+    lang = strdup(*arg_lang);
+  } else {
+    lang = (char *) "eng";
+  }
+  TesseractBinding* obj = ObjectWrap::Unwrap<TesseractBinding>(args.This());
+  int ret = obj->t_api->Init(NULL, lang);
+  return scope.Close(Integer::New(ret));
 }
 
 Handle<Value> TesseractBinding::SetImage(const Arguments& args) {
-
-
-
+HandleScope scope;
+REQUIRE_ARG_NUM(1);
+PIX* pix;
+if (args[0]->IsString()) {
+   pix = pixRead(strdup(*(String::Utf8Value(args[0]))));
+} else {
+   	return ThrowException(Exception::Error(
+   	String::New("Please enter a valid image location.")));
+}
+if (pix == NULL) {
+	return ThrowException(Exception::Error(
+	String::New("Error retrieve image from the given location.")));
+}
+TesseractBinding* obj = ObjectWrap::Unwrap<TesseractBinding>(args.This());
+obj->t_api->SetImage(pix);
+return scope.Close(Null());
 }
 
 Handle<Value> TesseractBinding::ProcessImage(const Arguments& args) {
-
-
+  HandleScope scope;
+  TesseractBinding* obj = ObjectWrap::Unwrap<TesseractBinding>(args.This());
+  obj->t_api->Recognize(NULL);
+  return scope.Close(Null());
 }
 
 Handle<Value> TesseractBinding::GetText(const Arguments& args) {
-
-
-
+  HandleScope scope;
+  TesseractBinding* obj = ObjectWrap::Unwrap<TesseractBinding>(args.This());
+  char *text = obj->t_api->GetUTF8Text();
+  return scope.Close(String::New(text));
 }
 
 Handle<Value> TesseractBinding::Close(const Arguments& args) {
-
-
+  HandleScope scope;
+  TesseractBinding* obj = ObjectWrap::Unwrap<TesseractBinding>(args.This());
+  obj->t_api->Clear();
+  return scope.Close(Null());
 }
 
 Handle<Value> TesseractBinding::End(const Arguments& args) {
-
-
-
+  HandleScope scope;
+  TesseractBinding* obj = ObjectWrap::Unwrap<TesseractBinding>(args.This());
+  obj->t_api->End();
+  return scope.Close(Null());
 }
