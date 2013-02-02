@@ -20,33 +20,12 @@
  * SOFTWARE.
  */
 
- #ifndef TESSERACTBINDING_H
- #define TESSERACTBINDING_H
-
- #include<baseapi.h>
- #include<v8.h>
  #include<node.h>
+ #include<v8.h>
+ #include<TesseractBinding.h>
 
- using namespace v8;
-
- class TesseractBinding : public node::ObjectWrap {
-    
-    public:
-    static void Inititialize(Handle<Object> target);
-
-    private:
-    /* Constructor. */
-    TesseractBinding();
-    
-    /* Destructor. */
-    ~TesseractBinding();
-
-    /* Basic API's */
-    static Handle<Value> New(const Arguments& args);
-    static Handle<Value> Init(const Arguments& args);
-    static Handle<Value> SetImage(const Arguments& args);
-    static Handle<Value> ProcessImage(const Arguments& args);
-    static Handle<Value> GetText(const Arguments& args);
-    static Handle<Value> Close(const Arguments& args);
-    static Handle<Value> End(const Arguments& args);
+ void InitializeLibs(Handle<Object> target) {
+ 	TesseractBinding.Initialize(target);
  }
+
+ NODE_MODULE(tesseractjsBindings,InitializeLibs)
