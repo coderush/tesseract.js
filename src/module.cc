@@ -20,12 +20,14 @@
  * SOFTWARE.
  */
 
- #include<node.h>
- #include<v8.h>
- #include<TesseractBinding.h>
+ #include <node.h>
+ #include <v8.h>
+ #include "TesseractBinding.h"
+
+ using namespace v8;
 
  void InitializeLibs(Handle<Object> target) {
- 	TesseractBinding.Initialize(target);
+ 	TesseractBinding::Initialize(target);
  }
 
  NODE_MODULE(tesseractjsBindings,InitializeLibs)

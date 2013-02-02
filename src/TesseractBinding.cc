@@ -20,23 +20,25 @@
  * SOFTWARE.
  */
 
-#include<v8.h>
-#include<node.h>
-#include<stdio.h>
+#include <v8.h>
+#include <node.h>
+#include <stdio.h>
 #include "TesseractBinding.h"
 
 using namespace v8;
 
-TesseractBinding::Inititialize(Handle<Object> target) {
+void TesseractBinding::Initialize(Handle<Object> target) {
 
   	Local<FunctionTemplate> constructor_template = FunctionTemplate::New(New);
     constructor_template->SetClassName(String::NewSymbol("TesseractBinding"));
     constructor_template->InstanceTemplate()->SetInternalFieldCount(1);
     Local<ObjectTemplate> proto = constructor_template->PrototypeTemplate();
-    proto->Set(String::NewSymbol("clear"),
-               FunctionTemplate::New(Clear)->GetFunction());
     proto->Set(String::NewSymbol("close"),
                FunctionTemplate::New(Close)->GetFunction());
+    proto->Set(String::NewSymbol("end"),
+               FunctionTemplate::New(End)->GetFunction());
+    proto->Set(String::NewSymbol("init"),
+               FunctionTemplate::New(Init)->GetFunction());
     proto->Set(String::NewSymbol("setImage"),
                FunctionTemplate::New(SetImage)->GetFunction());
     proto->Set(String::NewSymbol("processImage"),
@@ -58,36 +60,40 @@ TesseractBinding::~TesseractBinding() {
   printf("Destructing object");
 };
 
- Handle<Value> TesseractBinding::New(const Arguments& args) {
+Handle<Value> TesseractBinding::New(const Arguments& args) {
 
- }
+}
 
- Handle<Value> TesseractBinding::Init(const Arguments& args) {
-
-
-
- }
- Handle<Value> TesseractBinding::SetImage(const Arguments& args) {
+Handle<Value> TesseractBinding::Init(const Arguments& args) {
 
 
 
- }
- Handle<Value> TesseractBinding::ProcessImage(const Arguments& args) {
+}
 
-
- }
- Handle<Value> TesseractBinding::GetText(const Arguments& args) {
+Handle<Value> TesseractBinding::SetImage(const Arguments& args) {
 
 
 
- }
- Handle<Value> TesseractBinding::Close(const Arguments& args) {
+}
+
+Handle<Value> TesseractBinding::ProcessImage(const Arguments& args) {
 
 
- }
+}
 
- Handle<Value> TesseractBinding::End(const Arguments& args) {
+Handle<Value> TesseractBinding::GetText(const Arguments& args) {
 
 
- 	
- }
+
+}
+
+Handle<Value> TesseractBinding::Close(const Arguments& args) {
+
+
+}
+
+Handle<Value> TesseractBinding::End(const Arguments& args) {
+
+
+
+}

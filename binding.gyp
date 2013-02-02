@@ -19,7 +19,8 @@
         'deps/tesseract/wordrec',
       ],
       'sources': [
-        'src/TesseractBinding.cpp'
+        'src/TesseractBinding.cc',
+        'src/module.cc',
         'src/TesseractBinding.h'
       ],
       'cflags!': ['-fno-exceptions'],

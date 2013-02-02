@@ -23,16 +23,16 @@
  #ifndef TESSERACTBINDING_H
  #define TESSERACTBINDING_H
 
- #include<baseapi.h>
- #include<v8.h>
- #include<node.h>
+ #include <baseapi.h>
+ #include <v8.h>
+ #include <node.h>
 
  using namespace v8;
 
  class TesseractBinding : public node::ObjectWrap {
     
     public:
-    static void Inititialize(Handle<Object> target);
+    static void Initialize(Handle<Object> target);
 
     private:
     /* Constructor. */
@@ -49,4 +49,6 @@
     static Handle<Value> GetText(const Arguments& args);
     static Handle<Value> Close(const Arguments& args);
     static Handle<Value> End(const Arguments& args);
- }
+ };
+
+ #endif
